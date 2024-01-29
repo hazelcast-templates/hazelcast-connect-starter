@@ -12,8 +12,8 @@ services:
          OPTIONS: >-
             --vyne.analytics.persistRemoteCallResponses=true
             --vyne.analytics.persistResults=true
-            --vyne.db.username=hzc
-            --vyne.db.password=cddf6e29-e825-4b15-b11f-e85ff2ef5a90
+            --vyne.db.username=orbital
+            --vyne.db.password=changeme
             --vyne.db.host=postgres
             --vyne.workspace.project-file=/opt/service/workspace/taxi.conf
       ports:
@@ -38,8 +38,8 @@ services:
          - "25432:5432"
       environment:
          POSTGRES_DB: orbital
-         POSTGRES_USER: hzc
-         POSTGRES_PASSWORD: cddf6e29-e825-4b15-b11f-e85ff2ef5a90
+         POSTGRES_USER: oribtal
+         POSTGRES_PASSWORD: changeme
       volumes:
          - postgres_data:/var/lib/postgresql/data
 
