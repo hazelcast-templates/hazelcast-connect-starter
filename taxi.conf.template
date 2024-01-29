@@ -1,0 +1,3 @@
+name: {{ .project_group }}/{{ .project_name }}
+version: {{ .project_version }}
+sourceRoot: src/

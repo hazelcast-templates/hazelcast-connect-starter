@@ -1,0 +1,64 @@
+# This file stands up a Hazelcast Connect instance.
+
+version: "3.3"
+
+services:
+   orbital:
+      image: docker.io/orbitalhq/orbital:{{ .hzc_version }}
+      environment:
+         JAVA_OPTS: >-
+            -Xms256m
+            -Xmx1024m
+         OPTIONS: >-
+            --vyne.analytics.persistRemoteCallResponses=true
+            --vyne.analytics.persistResults=true
+            --vyne.db.username=hzc
+            --vyne.db.password=cddf6e29-e825-4b15-b11f-e85ff2ef5a90
+            --vyne.db.host=postgres
+            --vyne.workspace.project-file=/opt/service/workspace/taxi.conf
+      ports:
+         - "9022:9022"
+      expose:
+         - 9022
+      volumes:
+         - ~/.hazelcast/connect/license/:/opt/var/vyne/license/
+         - .:/opt/service/workspace
+      depends_on:
+         - postgres
+      deploy:
+         resources:
+            limits:
+               memory: 600mb
+
+   postgres:
+      image: docker.io/postgres:15
+      expose:
+         - 5432
+      ports:
+         - "25432:5432"
+      environment:
+         POSTGRES_DB: orbital
+         POSTGRES_USER: hzc
+         POSTGRES_PASSWORD: cddf6e29-e825-4b15-b11f-e85ff2ef5a90
+      volumes:
+         - postgres_data:/var/lib/postgresql/data
+
+   hazelcast:
+      image: docker.io/hazelcast/hazelcast:5.3.6
+      ports:
+         - "5701:5701"
+      environment:
+         - HZ_MANAGEMENTCENTER_SCRIPTINGENABLED=true
+         - HZ_MANAGEMENTCENTER_CONSOLEENABLED=true
+
+   management-center:
+      image: docker.io/hazelcast/management-center:5.3.3
+      ports:
+         - "8080:8080"
+      environment:
+         - MC_DEFAULT_CLUSTER=dev
+         - MC_DEFAULT_CLUSTER_MEMBERS=hazelcast
+         - MC_INIT_CMD=./bin/mc-conf.sh dev-mode configure
+
+volumes:
+   postgres_data:

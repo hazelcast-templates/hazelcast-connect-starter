@@ -1,0 +1,24 @@
+# Hazelcast Connect Starter
+
+This is a Hazelcast Connect project.
+
+## Requirements
+
+* A recent version of Docker
+* Docker Compose
+
+## Starting the Project
+
+Run the following command to start Hazelcast, Hazelcast Connect and the Management Center:
+
+```
+docker-compose pull
+docker-compose up
+```
+
+## Stopping the Project
+
+Press `Ctrl+C` to stop the containers and run the following to remove them:
+```
+docker-compose down
+```
