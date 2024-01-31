@@ -2,4 +2,4 @@ defaults:
   project_group: "com.example"
   project_name: "hazelcast-connect-starter"
   project_version: "0.1.0"
-  hzc_version: "next"
+  hzc_version: "latest"

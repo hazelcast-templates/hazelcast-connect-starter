@@ -6,6 +6,15 @@ This is a Hazelcast Connect project.
 
 * A recent version of Docker
 * Docker Compose
+* quay.io account
+
+## Logging into quay.io
+
+Run the following command to log in to quay.io:
+```
+docker login quay.io
+```
+The credentials are your quay.io username and password.
 
 ## Starting the Project
 

@@ -3,8 +3,8 @@
 version: "3.3"
 
 services:
-   orbital:
-      image: docker.io/orbitalhq/orbital:{{ .hzc_version }}
+   hazelcast-connect:
+      image: quay.io/hazelcast_cloud/hazelcast-connect-internal:{{ .hzc_version }}
       environment:
          JAVA_OPTS: >-
             -Xms256m
@@ -38,7 +38,7 @@ services:
          - "25432:5432"
       environment:
          POSTGRES_DB: orbital
-         POSTGRES_USER: oribtal
+         POSTGRES_USER: orbital
          POSTGRES_PASSWORD: changeme
       volumes:
          - postgres_data:/var/lib/postgresql/data
@@ -52,7 +52,7 @@ services:
          - HZ_MANAGEMENTCENTER_CONSOLEENABLED=true
 
    management-center:
-      image: docker.io/hazelcast/management-center:5.3.3
+      image: quay.io/hazelcast_cloud/management-center-orbital:latest
       ports:
          - "8080:8080"
       environment:
