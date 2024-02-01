@@ -27,8 +27,8 @@ docker-compose up
 
 You can use the following links once the containers start:
 
-* Hazelcast Connect: http://localhost:9091
-* Management Center: http://localhost:8000
+* Hazelcast Connect: http://localhost:9021
+* Management Center: http://localhost:8080
 
 ## Stopping the Project
 
