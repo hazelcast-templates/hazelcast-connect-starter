@@ -13,8 +13,8 @@ services:
             OPTIONS: >-
                 --vyne.analytics.persistRemoteCallResponses=true
                 --vyne.analytics.persistResults=true
-                --vyne.db.username=orbital
-                --vyne.db.password=changeme
+                --vyne.db.username=hzc
+                --vyne.db.password="{{ .postgres_password }}"
                 --vyne.db.host=postgres
                 --vyne.workspace.project-file=/opt/service/workspace/taxi.conf
                 --orbital.hazelcast.addresses=hazelcast:5701
@@ -37,13 +37,13 @@ services:
             - "25432:5432"
         environment:
             POSTGRES_DB: orbital
-            POSTGRES_USER: orbital
-            POSTGRES_PASSWORD: changeme
+            POSTGRES_USER: hzc
+            POSTGRES_PASSWORD: "{{ .postgres_password }}"
         volumes:
             - postgres_data:/var/lib/postgresql/data
 
     hazelcast:
-        image: docker.io/hazelcast/hazelcast:5.3.6
+        image: docker.io/hazelcast/hazelcast:{{ .hz_version }}
         ports:
             - "5701:5701"
         environment:

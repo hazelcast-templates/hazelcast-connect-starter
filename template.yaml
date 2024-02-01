@@ -2,4 +2,6 @@ defaults:
   project_group: "com.example"
   project_name: "hazelcast-connect-starter"
   project_version: "0.1.0"
+  hz_version: "5.3.6"
   hzc_version: "latest"
+  postgres_password: "43882f197-a23957b"

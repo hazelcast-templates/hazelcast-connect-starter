@@ -20,7 +20,8 @@ You can also pass the following options to `clc project create`:
 * `project_group=XXX`: Project group, default: `com.example`.
 * `project_name=XXX`: Project name, default: `hazelcast-connect-starter`
 * `project_version=XXX`: Project version, default: `0.1.0`
-* `hzc_version=XXX`: Hazelcast Connect version, default: `next`
+* `hz_version=XX`: Hazelcast version, default: `5.3.6`
+* `hzc_version=XXX`: Hazelcast Connect version, default: `latest`
 
 For example:
 
