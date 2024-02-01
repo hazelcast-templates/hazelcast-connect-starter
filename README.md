@@ -5,10 +5,12 @@ This template creates an empty Hazelcast Connect project.
 ## Requirements
 
 * Linux / MacOS or Windows with 64bit Intel/AMD or ARM architecture
-* [Hazelcast CLC](https://docs.hazelcast.com/clc/latest/install-clc)
+* Install [Hazelcast CLC](https://docs.hazelcast.com/clc/latest/install-clc)
 * Docker with Docker Compose or equivalent container runtime
 
 ## Create the Project
+
+Once the requirements are satisfied, you can create the starter project.
 
 To create a project with the default settings, run the following command:
 
