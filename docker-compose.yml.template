@@ -50,8 +50,8 @@ services:
             - HZ_MANAGEMENTCENTER_SCRIPTINGENABLED=true
             - HZ_MANAGEMENTCENTER_CONSOLEENABLED=true
 
-        management-center:
-            image: quay.io/hazelcast_cloud/management-center-orbital:latest
+    management-center:
+        image: quay.io/hazelcast_cloud/management-center-orbital:latest
         ports:
             - "8080:8080"
         environment:
