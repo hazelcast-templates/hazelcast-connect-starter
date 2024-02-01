@@ -58,6 +58,7 @@ services:
             - MC_DEFAULT_CLUSTER=dev
             - MC_DEFAULT_CLUSTER_MEMBERS=hazelcast
             - MC_INIT_CMD=./bin/mc-conf.sh dev-mode configure
+            - JAVA_OPTS=-Dhazelcast.mc.internal.orbitalAddress=http://localhost:9021
 
 volumes:
     postgres_data:

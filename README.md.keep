@@ -25,6 +25,11 @@ docker-compose pull
 docker-compose up
 ```
 
+You can use the following links once the containers start:
+
+* Hazelcast Connect: http://localhost:9091
+* Management Center: http://localhost:8000
+
 ## Stopping the Project
 
 Press `Ctrl+C` to stop the containers and run the following to remove them:
