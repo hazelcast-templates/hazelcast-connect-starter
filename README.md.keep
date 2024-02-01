@@ -22,7 +22,6 @@ The credentials are your quay.io username and password.
 Run the following command to start Hazelcast, Hazelcast Connect and the Management Center:
 
 ```
-docker-compose pull
 docker-compose up
 ```
 
