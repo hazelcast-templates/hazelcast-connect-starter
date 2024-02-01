@@ -36,3 +36,8 @@ Press `Ctrl+C` to stop the containers and run the following to remove them:
 ```
 docker-compose down
 ```
+
+Alternatively, you can use the following command to remove the associated volumes as well:
+```
+docker-compose down --volumes
+```

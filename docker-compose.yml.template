@@ -14,7 +14,7 @@ services:
                 --vyne.analytics.persistRemoteCallResponses=true
                 --vyne.analytics.persistResults=true
                 --vyne.db.username=hzc
-                --vyne.db.password="{{ .postgres_password }}"
+                --vyne.db.password={{ .postgres_password }}
                 --vyne.db.host=postgres
                 --vyne.workspace.project-file=/opt/service/workspace/taxi.conf
                 --orbital.hazelcast.addresses=hazelcast:5701
@@ -52,6 +52,7 @@ services:
 
     management-center:
         image: quay.io/hazelcast_cloud/management-center-orbital:latest
+        pull_policy: always
         ports:
             - "8080:8080"
         environment:
