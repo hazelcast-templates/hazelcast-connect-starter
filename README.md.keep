@@ -1,6 +1,7 @@
 # Hazelcast Connect Starter
 
-This is a Hazelcast Connect project.
+This is the starting point for a Hazelcast Connect project.
+Once you met the requirements below, you can use Docker Compose to start Hazelcast Connect and the Management Center.
 
 ## Requirements
 
