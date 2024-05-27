@@ -1,0 +1,6 @@
+namespace {{ make_namespace .project_group .project_name }} {
+    // Add your Taxi definitions here
+
+}
+
+

@@ -1,10 +1,10 @@
-# This file stands up Hazelcast, Hazelcast Flow and Hazelcast Management Center.
+# This file starts Hazelcast, Hazelcast Flow and Hazelcast Management Center.
 # See README.md for instructions.
 
 version: "3.3"
 
 services:
-    hazelcast-dlow:
+    hazelcast-flow:
         image: quay.io/hazelcast_cloud/hazelcast-connect-internal:{{ .hzc_version }}
         pull_policy: always
         environment:
@@ -20,14 +20,15 @@ services:
                 --vyne.db.host=postgres
                 --vyne.db.password={{ .postgres_password }}
                 --vyne.db.username=hzc
-                --vyne.workspace.project-file=/opt/service/workspace/taxi.conf
+                --vyne.workspace.config-file=/opt/service/workspace/config.conf
+                --vyne.config.custom.managementCenterUrl=http://localhost:8080
         ports:
             - "9021:9021"
         expose:
             - 9021
         volumes:
             - ~/.hazelcast/connect/license/:/opt/var/vyne/license/
-            - .:/opt/service/workspace
+            - ./workspace:/opt/service/workspace
         depends_on:
             - postgres
 
