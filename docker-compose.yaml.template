@@ -1,10 +1,10 @@
-# This file stands up Hazelcast, Hazelcast Connect and Hazelcast Management Center.
+# This file stands up Hazelcast, Hazelcast Flow and Hazelcast Management Center.
 # See README.md for instructions.
 
 version: "3.3"
 
 services:
-    hazelcast-connect:
+    hazelcast-dlow:
         image: quay.io/hazelcast_cloud/hazelcast-connect-internal:{{ .hzc_version }}
         pull_policy: always
         environment:
