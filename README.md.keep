@@ -1,7 +1,7 @@
-# Hazelcast Connect Starter
+# Hazelcast Flow Starter
 
-This is the starting point for a Hazelcast Connect project.
-Once you met the requirements below, you can use Docker Compose to start Hazelcast Connect and the Management Center.
+This is the starting point for a Hazelcast Flow project.
+Once you met the requirements below, you can use Docker Compose to start Hazelcast Flow and the Management Center.
 
 ## Requirements
 
@@ -19,7 +19,7 @@ The credentials are your quay.io username and password.
 
 ## Starting the Project
 
-Run the following command to start Hazelcast, Hazelcast Connect and the Management Center:
+Run the following command to start Hazelcast, Hazelcast Flow and the Management Center:
 
 ```
 docker-compose up
@@ -27,7 +27,7 @@ docker-compose up
 
 You can use the following links once the containers start:
 
-* Hazelcast Connect: http://localhost:9021
+* Hazelcast Flow: http://localhost:9021
 * Management Center: http://localhost:8080
 
 ## Stopping the Project
