@@ -1,7 +1,17 @@
 defaults:
   project_group: "com.example"
-  project_name: "hazelcast-flow-starter"
+  project_name: "sampleapp"
   project_version: "0.1.0"
   hz_version: "5.4.0"
   hzc_version: "next"
   postgres_password: "43882f197-a23957b"
+
+note: |
+  Hazelcast Flow workspace was created successfully.
+  
+  You can start Hazelcast Flow using the following steps:
+  - cd into the project directory.
+  - Run: docker login quay.io
+  - Run: docker-compose up
+  
+  Hazelcast Flow is available at http://localhost:9021
