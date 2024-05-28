@@ -3,7 +3,7 @@ defaults:
   project_name: "sampleapp"
   project_version: "0.1.0"
   hz_version: "5.4.0"
-  hzc_version: "latest"
+  flow_version: "latest"
   postgres_password: "43882f197-a23957b"
 
 note: |
