@@ -1,6 +1,6 @@
 # Hazelcast Flow Starter
 
-This template creates an empty Hazelcast Flow project.
+This template creates a Hazelcast Flow workspace with a blank project.
 
 ## Requirements
 
@@ -8,11 +8,11 @@ This template creates an empty Hazelcast Flow project.
 * Install [Hazelcast CLC](https://docs.hazelcast.com/clc/latest/install-clc)
 * Docker with Docker Compose or equivalent container runtime
 
-## Create the Project
+## Create the Workspace
 
-Once the requirements are satisfied, you can create the starter project.
+Once the requirements are satisfied, you can create the starter workspace.
 
-To create a project with the default settings, run the following command:
+To create the workspace with the default settings, run the following command:
 
 ```
 clc project create -t hazelcast-flow-starter
@@ -33,4 +33,4 @@ clc project create -t hazelcast-flow-starter project_name=my-project project_ver
 
 ## Further Instructions
 
-The `README.md` in the generated project contains further instructions.
+The `README.md` in the generated workspace contains further instructions.
