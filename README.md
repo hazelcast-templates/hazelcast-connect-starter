@@ -23,7 +23,7 @@ You can also pass the following options to `clc project create`:
 * `project_name=XXX`: Project name, default: `sampleapp`
 * `project_version=XXX`: Project version, default: `0.1.0`
 * `hz_version=XX`: Hazelcast version, default: `5.4.0`
-* `flow_version=XXX`: Hazelcast Flow version, default: `next`
+* `flow_version=XXX`: Hazelcast Flow version, default: `latest`
 
 For example:
 
