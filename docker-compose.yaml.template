@@ -5,7 +5,7 @@ version: "3.3"
 
 services:
     hazelcast-flow:
-        image: quay.io/hazelcast_cloud/hazelcast-connect-internal:{{ .flow_version }}
+        image: quay.io/hazelcast_cloud/hazelcast-flow-internal:{{ .flow_version }}
         pull_policy: always
         environment:
             JAVA_OPTS: >-
