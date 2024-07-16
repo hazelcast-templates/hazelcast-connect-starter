@@ -12,8 +12,8 @@ services:
                 -Xms256m
                 -Xmx2048m
             OPTIONS: >-
-                --orbital.hazelcast.addresses=hazelcast:5701
-                --orbital.hazelcast.cluster-name=dev
+                --flow.hazelcast.addresses=hazelcast:5701
+                --flow.hazelcast.cluster-name=dev
                 --vyne.analytics.persistRemoteCallResponses=true
                 --vyne.analytics.persistResults=true
                 --vyne.db.database=hzc
@@ -54,12 +54,12 @@ services:
             - HZ_MANAGEMENTCENTER_SCRIPTINGENABLED=true
 
     management-center:
-        image: quay.io/hazelcast_cloud/management-center-orbital:latest
+        image: quay.io/hazelcast_cloud/management-center-flow:latest
         pull_policy: always
         ports:
             - "8080:8080"
         environment:
-            - JAVA_OPTS=-Dhazelcast.mc.internal.orbitalAddress=http://localhost:9021
+            - JAVA_OPTS=-Dhazelcast.mc.internal.flowAddress=http://localhost:9021
             - MC_DEFAULT_CLUSTER_MEMBERS=hazelcast
             - MC_DEFAULT_CLUSTER=dev
             - MC_INIT_CMD=./bin/mc-conf.sh dev-mode configure
