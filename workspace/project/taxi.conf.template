@@ -2,5 +2,5 @@ name: {{ .project_group }}/{{ .project_name }}
 version: {{ .project_version }}
 sourceRoot: src/
 additionalSources: {
-    "@orbital/config" : "config/*.conf",
+    "@flow/config" : "config/*.conf",
 }
