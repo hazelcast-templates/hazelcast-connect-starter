@@ -59,9 +59,11 @@ services:
         ports:
             - "8080:8080"
         environment:
-            - JAVA_OPTS=-Dhazelcast.mc.internal.flowAddress=http://localhost:9021
+            - JAVA_OPTS=-Dhazelcast.mc.flow.address=http://localhost:9021 -Dhazelcast.mc.flow.internalAddress=http://hazelcast-flow:9021
             - MC_DEFAULT_CLUSTER_MEMBERS=hazelcast
             - MC_DEFAULT_CLUSTER=dev
+            - MC_LICENSE=${MC_LICENSE}
+            - MC_APPLICATION_CLIENT_SECRET=${MC_APPLICATION_CLIENT_SECRET}
             - MC_INIT_CMD=./bin/mc-conf.sh dev-mode configure
 
 volumes:
