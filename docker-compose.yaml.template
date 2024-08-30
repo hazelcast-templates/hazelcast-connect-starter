@@ -5,8 +5,13 @@ version: "3.3"
 
 services:
     hazelcast-flow:
-        image: quay.io/hazelcast_cloud/hazelcast-flow-internal:{{ .flow_version }}
+        image: docker.io/hazelcast/hazelcast-flow:{{ .flow_version }}
         pull_policy: always
+        healthcheck:
+          test: curl --fail http://localhost:9021/api/actuator/health || exit 1
+          interval: 30s
+          timeout: 5s
+          retries: 3
         environment:
             JAVA_OPTS: >-
                 -Xms256m
@@ -46,25 +51,36 @@ services:
             - postgres_data:/var/lib/postgresql/data
 
     hazelcast:
-        image: docker.io/hazelcast/hazelcast:{{ .hz_version }}
+        image: docker.io/hazelcast/hazelcast-enterprise:{{ .hz_version }}
         ports:
             - "5701:5701"
+        healthcheck:
+          test: curl --fail http://localhost:5701/hazelcast/health || exit 1
+          interval: 30s
+          timeout: 5s
+          retries: 3
         environment:
             - HZ_MANAGEMENTCENTER_CONSOLEENABLED=true
             - HZ_MANAGEMENTCENTER_SCRIPTINGENABLED=true
+            - HZ_LICENSEKEY=${MC_LICENSE}
 
     management-center:
-        image: quay.io/hazelcast_cloud/management-center-flow:latest
+        image: docker.io/hazelcast/management-center-flow:{{ .mc_version }}
         pull_policy: always
         ports:
             - "8080:8080"
+        healthcheck:
+          test: curl --fail http://localhost:8080/health || exit 1
+          interval: 30s
+          timeout: 5s
+          retries: 3
         environment:
             - JAVA_OPTS=-Dhazelcast.mc.flow.address=http://localhost:9021 -Dhazelcast.mc.flow.internalAddress=http://hazelcast-flow:9021
             - MC_DEFAULT_CLUSTER_MEMBERS=hazelcast
             - MC_DEFAULT_CLUSTER=dev
             - MC_LICENSE=${MC_LICENSE}
             - MC_APPLICATION_CLIENT_SECRET=${MC_APPLICATION_CLIENT_SECRET}
-            - MC_INIT_CMD=./bin/mc-conf.sh dev-mode configure
+            - MC_INIT_CMD=./bin/mc-conf.sh security reset && ./bin/mc-conf.sh dev-mode configure
 
 volumes:
     postgres_data:
