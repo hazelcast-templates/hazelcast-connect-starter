@@ -7,22 +7,30 @@ Once you met the requirements below, you can use Docker Compose to start Hazelca
 
 * A recent version of Docker
 * Docker Compose
-* quay.io account
+* Hazelcast License 
 
-## Logging into quay.io
+## Set up the Hazelcast License
+> **⚠️ Important**
+> You must create the file .env and populate it with the license information:
+>   - MC_LICENSE contains the Hazelcast license
+>   - MC_APPLICATION_CLIENT_SECRET is used as client credentials for authenticated API access
 
-Run the following command to log in to quay.io:
 ```
-docker login quay.io
+cp .env.example .env
 ```
-The credentials are your quay.io username and password.
+
 
 ## Starting the Project
 
 Run the following command to start Hazelcast, Hazelcast Flow and the Management Center:
 
+Note: Management Center is pre-configured in dev-mode, which allows it to be used without 
+needing credentials for logging in or using the REST API.  This is suitable for development
+and prototyping without requiring any security credentials to login.  
+Dev mode should not be used with production clusters.
+
 ```
-docker-compose up
+docker compose up
 ```
 
 You can use the following links once the containers start:
@@ -34,10 +42,10 @@ You can use the following links once the containers start:
 
 Press `Ctrl+C` to stop the containers and run the following to remove them:
 ```
-docker-compose down
+docker compose down
 ```
 
 Alternatively, you can use the following command to remove the associated volumes as well:
 ```
-docker-compose down --volumes
+docker compose down --volumes
 ```

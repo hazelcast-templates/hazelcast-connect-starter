@@ -1,36 +1,49 @@
-# This file starts Hazelcast, Hazelcast Flow and Hazelcast Management Center.
+# This file starts Hazelcast Flow and Hazelcast Management Center.
 # See README.md for instructions.
 
 version: "3.3"
 
 services:
     hazelcast-flow:
-        image: quay.io/hazelcast_cloud/hazelcast-flow-internal:{{ .flow_version }}
+        image: "docker.io/hazelcast/hazelcast-flow:{{ .flow_version }}"
         pull_policy: always
         environment:
+            MC_LICENSE: "${MC_LICENSE}"
             JAVA_OPTS: >-
-                -Xms256m
-                -Xmx2048m
+                -XX:MaxRAMPercentage=50
+                -XX:InitialRAMPercentage=50
             OPTIONS: >-
-                --flow.hazelcast.addresses=hazelcast:5701
-                --flow.hazelcast.cluster-name=dev
-                --vyne.analytics.persistRemoteCallResponses=true
-                --vyne.analytics.persistResults=true
-                --vyne.db.database=hzc
-                --vyne.db.host=postgres
-                --vyne.db.password={{ .postgres_password }}
-                --vyne.db.username=hzc
-                --vyne.workspace.config-file=/opt/service/workspace/config.conf
-                --vyne.config.custom.managementCenterUrl=http://localhost:8080
+                --flow.analytics.persistRemoteCallResponses=true
+                --flow.analytics.persistResults=true
+                --flow.workspace.config-file=/opt/service/workspace/workspace.conf
+                --flow.db.database=flow
+                --flow.db.username=flow
+                --flow.db.password={{ .postgres_password }}
+                --flow.db.host=postgres
+                --flow.config.custom.managementCenterUrl=http://localhost:8080
+                --flow.hazelcast.configYamlPath=/opt/hazelcast/config_ext/hazelcast.yml
         ports:
             - "9021:9021"
         expose:
             - 9021
+        healthcheck:
+            test: curl --fail http://localhost:9021/api/actuator/health || exit 1
+            interval: 30s
+            timeout: 5s
+            retries: 3
         volumes:
-            - ~/.hazelcast/connect/license/:/opt/var/vyne/license/
             - ./workspace:/opt/service/workspace
+            - type: bind
+              source: ./hazelcast.yml
+              target: /opt/hazelcast/config_ext/hazelcast.yml
         depends_on:
             - postgres
+        deploy:
+            restart_policy:
+                condition: on-failure
+            resources:
+                limits:
+                    memory: 2gb
 
     postgres:
         image: docker.io/postgres:15
@@ -39,32 +52,29 @@ services:
         ports:
             - "25432:5432"
         environment:
-            POSTGRES_DB: hzc
+            POSTGRES_DB: flow
             POSTGRES_PASSWORD: "{{ .postgres_password }}"
-            POSTGRES_USER: hzc
+            POSTGRES_USER: flow
         volumes:
             - postgres_data:/var/lib/postgresql/data
 
-    hazelcast:
-        image: docker.io/hazelcast/hazelcast:{{ .hz_version }}
-        ports:
-            - "5701:5701"
-        environment:
-            - HZ_MANAGEMENTCENTER_CONSOLEENABLED=true
-            - HZ_MANAGEMENTCENTER_SCRIPTINGENABLED=true
-
     management-center:
-        image: quay.io/hazelcast_cloud/management-center-flow:latest
+        image: "docker.io/hazelcast/management-center-flow:{{ .flow_version }}"
         pull_policy: always
         ports:
             - "8080:8080"
+        healthcheck:
+            test: curl --fail http://localhost:8080/health || exit 1
+            interval: 30s
+            timeout: 5s
+            retries: 3
         environment:
             - JAVA_OPTS=-Dhazelcast.mc.flow.address=http://localhost:9021 -Dhazelcast.mc.flow.internalAddress=http://hazelcast-flow:9021
-            - MC_DEFAULT_CLUSTER_MEMBERS=hazelcast
-            - MC_DEFAULT_CLUSTER=dev
+            - MC_DEFAULT_CLUSTER_MEMBERS=hazelcast-flow:5701
+            - MC_DEFAULT_CLUSTER=flow
             - MC_LICENSE=${MC_LICENSE}
             - MC_APPLICATION_CLIENT_SECRET=${MC_APPLICATION_CLIENT_SECRET}
-            - MC_INIT_CMD=./bin/mc-conf.sh dev-mode configure
+            - MC_INIT_CMD=./bin/mc-conf.sh security reset && ./bin/mc-conf.sh dev-mode configure
 
 volumes:
     postgres_data:
