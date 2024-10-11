@@ -25,7 +25,9 @@ cp .env.example .env
 Run the following command to start Hazelcast, Hazelcast Flow and the Management Center:
 
 Note: Management Center is pre-configured in dev-mode, which allows it to be used without 
-needing credentials for logging in or using the REST API.
+needing credentials for logging in or using the REST API.  This is suitable for development
+and prototyping without requiring any security credentials to login.  
+Dev mode should not be used with production clusters.
 
 ```
 docker compose up

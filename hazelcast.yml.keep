@@ -1,0 +1,12 @@
+hazelcast:
+  cluster-name: flow
+  jet:
+    enabled: true
+  network:
+    join:
+      multicast:
+        enabled: false
+      tcp-ip:
+        enabled: true
+        member-list:
+          - hazelcast-flow-starter-hazelcast-flow-1:5701
