@@ -59,7 +59,7 @@ services:
             - postgres_data:/var/lib/postgresql/data
 
     management-center:
-        image: "docker.io/hazelcast/management-center-flow:{{ .flow_version }}"
+        image: "docker.io/hazelcast/management-center-flow:{{ .mc_version }}"
         pull_policy: always
         ports:
             - "8080:8080"
@@ -69,7 +69,7 @@ services:
             timeout: 5s
             retries: 3
         environment:
-            - JAVA_OPTS=-Dhazelcast.mc.flow.address=http://localhost:9021 -Dhazelcast.mc.flow.internalAddress=http://hazelcast-flow:9021
+            - JAVA_OPTS=-Dhazelcast.mc.flow.addresses=http://localhost:9021 -Dhazelcast.mc.flow.internalAddress=http://hazelcast-flow:9021
             - MC_DEFAULT_CLUSTER_MEMBERS=hazelcast-flow:5701
             - MC_DEFAULT_CLUSTER=flow
             - MC_LICENSE=${MC_LICENSE}

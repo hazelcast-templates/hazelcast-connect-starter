@@ -22,7 +22,7 @@ cp .env.example .env
 
 ## Starting the Project
 
-Run the following command to start Hazelcast, Hazelcast Flow and the Management Center:
+Run the following command to start Hazelcast Flow and the Management Center:
 
 Note: Management Center is pre-configured in dev-mode, which allows it to be used without 
 needing credentials for logging in or using the REST API.  This is suitable for development
