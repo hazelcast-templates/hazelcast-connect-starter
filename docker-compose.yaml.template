@@ -73,7 +73,6 @@ services:
             - MC_DEFAULT_CLUSTER_MEMBERS=hazelcast-flow:5701
             - MC_DEFAULT_CLUSTER=flow
             - MC_LICENSE=${MC_LICENSE}
-            - MC_APPLICATION_CLIENT_SECRET=${MC_APPLICATION_CLIENT_SECRET}
             - MC_INIT_CMD=./bin/mc-conf.sh security reset && ./bin/mc-conf.sh dev-mode configure
 
 volumes:
