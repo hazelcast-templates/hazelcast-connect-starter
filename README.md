@@ -9,7 +9,7 @@ This template creates a Hazelcast Flow workspace with a blank project.
 * Docker with Docker Compose or equivalent container runtime
 
 
-> Note: CLC version 5.4.1 (or higher if available) is recommended.
+> Note: CLC version 5.5.0 (or higher if available) is recommended.
 
 
 ## Create the Workspace
