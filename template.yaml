@@ -11,7 +11,7 @@ note: |
   
   You can start Hazelcast Flow using the following steps:
   - cd into the project directory.
-  - Set up the Hazelcast license and API credentials in .env
+  - Set up the Hazelcast Flow license in .env
   - Run: docker compose up
   Please check out the README.md for more details!
  

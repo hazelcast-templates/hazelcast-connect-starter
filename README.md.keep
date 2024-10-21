@@ -9,7 +9,7 @@ Once you met the requirements below, you can use Docker Compose to start Hazelca
 * Docker Compose
 * Hazelcast Flow License
 
-## Set up the Hazelcast License
+## Set up the Hazelcast Flow License
 > **⚠️ Important**
 > You must create the file .env and populate it with the license information:
 >   - MC_LICENSE contains the Hazelcast Flow license
